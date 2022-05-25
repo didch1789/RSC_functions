@@ -11,9 +11,12 @@ function aIdx = generate_random_alignIndex(all_epoch_data, varargin)
         end
     end
 	[~, n_neuron] = size(all_epoch_data);
-	cov_all = cov(all_epoch_data);
-	[eigVect, eigVal] = eig(cov_all);
-	var_data = sum(diag(real(eigVal)));   n_set = 2;
+    [eigVect, ~, eigVal] = pca(all_epoch_data);
+     
+    orth(randn(n_neuron, 
+	% cov_all = cov(all_epoch_data);
+	% [eigVect, eigVal] = eig(cov_all);
+	var_data = sum(eigVal);   n_set = 2;
 	n_boot	 = 1000;
 	
 	aIdx = zeros( n_boot, 1 );
